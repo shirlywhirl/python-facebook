@@ -1,21 +1,11 @@
 language: python
 python:
-  - '2.7'
-  - '3.6'
-  - '3.7'
-  - '3.8'
-
+  - "3.6"
+  - "3.7"
+  - "3.8"
+before_install:
+  - pip install poetry
 install:
-  - pip install pipenv
-  - pipenv install --dev
+  - pip install tox-travis
 script:
-  - make lint
-  - make test
-
-# ignore tags build
-branches:
-  except:
-    - /^v?\d+\.\d+(\.\d+)?(-\S*)?$/
-
-after_success:
-  - codecov
+  - tox
